@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "legalsquad",
+  "description": "Superfície de comando do LegalSquad para o Claude Code: a skill /legalsquad, os agentes de núcleo (verificador de citações, avaliador de squad, catalog-scout, verificador de persuasão, contraditor) e os gates determinísticos de citação e redação. O motor (CLI legalsquad) continua sendo instalado à parte, pelo GitHub.",
+  "version": "0.6.1",
+  "author": {
+    "name": "Criminal Lab"
+  },
+  "homepage": "https://github.com/bbpropulse/legalsquad-nucleo",
+  "repository": "https://github.com/bbpropulse/legalsquad-nucleo",
+  "license": "UNLICENSED",
+  "keywords": [
+    "claude-code",
+    "ai-agents",
+    "multi-agent",
+    "orchestration",
+    "squads"
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "legalsquad/execution-output.schema.json",
+  "title": "LegalSquad — saída jurídica de alta performance",
+  "description": "Sidecar auditável de uma entrega jurídica. Não substitui a peça legível nem a revisão humana.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "objetivo_juridico",
+    "polo",
+    "fase_processual",
+    "cronologia",
+    "fatos_documentados",
+    "provas",
+    "inferencias",
+    "lacunas_documentais",
+    "teses",
+    "objecoes_provaveis",
+    "respostas_e_distinguishing",
+    "regra_temporal_aplicada",
+    "citacoes_verificadas",
+    "calculos",
+    "riscos",
+    "nivel_confianca",
+    "pedido_operacional",
+    "proxima_acao",
+    "revisao_humana_obrigatoria"
+  ],
+  "properties": {
+    "schema_version": { "const": "4" },
+    "status": { "enum": ["concluido", "concluido_com_ressalvas", "bloqueado"] },
+    "objetivo_juridico": { "type": "string", "minLength": 1 },
+    "polo": { "enum": ["defesa", "acusacao", "assistente", "misto", "nao_informado"] },
+    "fase_processual": { "type": "string", "minLength": 1 },
+    "cronologia": { "$ref": "#/$defs/itensAncorados" },
+    "fatos_documentados": { "$ref": "#/$defs/itensAncorados" },
+    "provas": { "$ref": "#/$defs/itensAncorados" },
+    "inferencias": { "type": "array", "items": { "type": "string" } },
+    "lacunas_documentais": { "type": "array", "items": { "type": "string" } },
+    "teses": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["principal", "subsidiarias", "exploratorias"],
+      "properties": {
+        "principal": { "type": "array", "items": { "$ref": "#/$defs/tese" } },
+        "subsidiarias": { "type": "array", "items": { "$ref": "#/$defs/tese" } },
+        "exploratorias": { "type": "array", "items": { "$ref": "#/$defs/tese" } }
+      }
+    },
+    "objecoes_provaveis": { "type": "array", "items": { "type": "string" } },
+    "respostas_e_distinguishing": { "type": "array", "items": { "type": "string" } },
+    "regra_temporal_aplicada": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "regra_id", "justificativa", "fontes"],
+      "properties": {
+        "status": { "enum": ["verificada", "pendente", "controvertida", "nao_aplicavel"] },
+        "regra_id": { "type": ["string", "null"] },
+        "justificativa": { "type": "string" },
+        "fontes": { "type": "array", "items": { "$ref": "#/$defs/fonte" } }
+      }
+    },
+    "citacoes_verificadas": { "type": "array", "items": { "$ref": "#/$defs/fonte" } },
+    "calculos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["motor", "versao", "inputs", "resultado", "memoria", "regra_id", "revisado_por_humano"],
+        "properties": {
+          "motor": { "type": "string" },
+          "versao": { "type": "string" },
+          "inputs": { "type": "object" },
+          "resultado": {},
+          "memoria": { "type": "array", "items": { "type": "string" } },
+          "regra_id": { "type": "string", "minLength": 1 },
+          "revisado_por_humano": { "type": "boolean" }
+        }
+      }
+    },
+    "riscos": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nivel", "hard_fails", "ressalvas"],
+      "properties": {
+        "nivel": { "enum": ["baixo", "medio", "alto", "maximo"] },
+        "hard_fails": { "type": "array", "items": { "type": "string" } },
+        "ressalvas": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "nivel_confianca": { "enum": ["alto", "medio", "baixo"] },
+    "pedido_operacional": { "type": "array", "items": { "type": "string" } },
+    "proxima_acao": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["acao", "responsavel", "prazo"],
+      "properties": {
+        "acao": { "type": "string" },
+        "responsavel": { "type": "string" },
+        "prazo": { "type": ["string", "null"] }
+      }
+    },
+    "revisao_humana_obrigatoria": { "const": true }
+  },
+  "$defs": {
+    "fonte": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tipo", "titulo", "url_oficial", "consultada_em", "status"],
+      "properties": {
+        "tipo": { "enum": ["legislacao", "jurisprudencia", "sumula", "ato", "documento_do_caso"] },
+        "titulo": { "type": "string" },
+        "url_oficial": { "type": ["string", "null"], "format": "uri" },
+        "consultada_em": { "type": "string", "format": "date" },
+        "status": { "enum": ["verificada", "nao_verificada", "divergente", "quarentenada"] },
+        "alcance": { "type": "string" }
+      }
+    },
+    "itemAncorado": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conteudo", "ancora"],
+      "properties": {
+        "conteudo": { "type": "string" },
+        "ancora": { "type": "string", "description": "Documento, evento, página, ID ou fonte oficial." },
+        "data": { "type": ["string", "null"] },
+        "confianca": { "enum": ["alta", "media", "baixa"] }
+      }
+    },
+    "itensAncorados": { "type": "array", "items": { "$ref": "#/$defs/itemAncorado" } },
+    "tese": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["proposicao", "fundamento", "ancoras", "risco"],
+      "properties": {
+        "proposicao": { "type": "string" },
+        "fundamento": { "type": "string" },
+        "ancoras": { "type": "array", "items": { "type": "string" } },
+        "risco": { "enum": ["baixo", "medio", "alto", "maximo"] }
+      }
+    }
+  }
+}

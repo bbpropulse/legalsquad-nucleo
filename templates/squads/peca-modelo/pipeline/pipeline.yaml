@@ -1,0 +1,157 @@
+name: "Pipeline — Squad Modelo de Peça"
+version: "1.0.0"
+created: "2026-09-02"
+squad: "peca-modelo"
+
+description: >
+  Caminho canônico de entrega jurídica (PLANO-ORQUESTRADOR.md, Fase 1 e 2):
+  intake → fase zero em paralelo (parallel_group: diagnostico) → diagnostico →
+  pesquisa → redação → revisão com on_reject → aprovacao (pacote). Três
+  paradas humanas com nome e nenhuma outra. Área fictícia "demo".
+
+mode: "alta-performance"
+
+steps:
+  - id: step-01
+    name: "Intake"
+    type: checkpoint
+    file: steps/step-01-intake.md
+    output:
+      artifacts:
+        - output/intake.md
+
+  - id: step-02
+    name: "Resumo do caso"
+    type: agent
+    agent: leitor-resumo-modelo
+    execution: subagent
+    file: steps/step-02-resumo.md
+    depends_on: step-01
+    parallel_group: diagnostico
+    output:
+      artifacts:
+        - output/diagnostico/resumo.md
+
+  - id: step-03
+    name: "Prova e contradições"
+    type: agent
+    agent: leitor-prova-modelo
+    execution: subagent
+    file: steps/step-03-prova.md
+    depends_on: step-01
+    parallel_group: diagnostico
+    output:
+      artifacts:
+        - output/diagnostico/contradicoes.md
+
+  - id: step-04
+    name: "Pré-mortem"
+    type: agent
+    agent: adversario-modelo
+    execution: subagent
+    file: steps/step-04-pre-mortem.md
+    depends_on: step-01
+    parallel_group: diagnostico
+    output:
+      artifacts:
+        - output/diagnostico/pre-mortem.md
+
+  - id: step-05
+    name: "Temas do acervo"
+    type: agent
+    agent: leitor-acervo-modelo
+    execution: subagent
+    file: steps/step-05-temas.md
+    depends_on: step-01
+    parallel_group: diagnostico
+    output:
+      artifacts:
+        - output/diagnostico/temas.md
+
+  - id: step-06
+    name: "Diagnóstico"
+    type: checkpoint
+    file: steps/step-06-diagnostico.md
+    depends_on: [step-02, step-03, step-04, step-05]
+    output:
+      artifacts:
+        - output/foco.md
+
+  - id: step-07
+    name: "Pesquisa"
+    type: agent
+    agent: pesquisador-modelo
+    execution: subagent
+    file: steps/step-07-pesquisa.md
+    depends_on: step-06
+    output:
+      artifacts:
+        - output/pesquisa-juridica.md
+
+  - id: step-08
+    name: "Redação"
+    type: agent
+    agent: redator-modelo
+    execution: inline
+    file: steps/step-08-redacao.md
+    depends_on: step-07
+    output:
+      artifacts:
+        - output/peca-modelo.md
+
+  - id: step-09
+    name: "Revisão"
+    type: agent
+    agent: revisor-modelo
+    execution: subagent
+    file: steps/step-09-revisao.md
+    depends_on: step-08
+    on_reject: step-08
+    max_review_cycles: 3
+    output:
+      artifacts:
+        - output/revisao.md
+
+  - id: step-10
+    name: "Conferência de entrega"
+    type: agent
+    agent: conferente-modelo
+    execution: subagent
+    file: steps/step-10-conferencia.md
+    depends_on: step-09
+    citation_verifiers: 3   # Citation Gate FINAL (voting) ancorado FORA do loop de revisão — regra do compilador
+    meta_verifiers: 3       # peça protocolável de maior risco: consenso na meta e contraditor automático
+    output:
+      artifacts:
+        - output/peca-modelo-final.md
+
+  - id: step-11
+    name: "Aprovação"
+    type: checkpoint
+    file: steps/step-11-aprovacao.md
+    depends_on: step-10
+    output:
+      artifacts:
+        - output/aprovacao.md
+
+checkpoints:
+  - step-01
+  - step-06
+  - step-11
+
+# Três paradas humanas com nome (intake, diagnostico, aprovacao) e nenhuma outra.
+# Não há step irreversível neste modelo: a entrega é o pacote da parada aprovacao.
+
+output:
+  artifacts:
+    - output/intake.md
+    - output/diagnostico/resumo.md
+    - output/diagnostico/contradicoes.md
+    - output/diagnostico/pre-mortem.md
+    - output/diagnostico/temas.md
+    - output/foco.md
+    - output/pesquisa-juridica.md
+    - output/peca-modelo.md
+    - output/revisao.md
+    - output/peca-modelo-final.md
+    - output/aprovacao.md

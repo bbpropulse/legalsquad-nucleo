@@ -1,0 +1,24 @@
+node_modules/
+.env
+*.log
+
+# Runtime de squads (saídas/estado do usuário)
+squads/*/output/
+squads/*/state.json
+# Memória de execução por squad (pode conter tema/caso real — sigilo/LGPD)
+squads/*/_memory/
+# Autos do caso (PDFs do processo, índice e cache de texto — sigilo/LGPD)
+squads/*/autos/
+
+# Memória/instância e sessões do usuário. Diretório inteiro: a memória do chefe cresce
+# por arquivo e listar nome a nome deixa o próximo fato escapar para o git do escritório.
+_legalsquad/_memory/
+_legalsquad/_browser_profile/
+_legalsquad/logs/
+
+# Acervo: dados de clientes (sigilo profissional / LGPD)
+acervo/casos/
+
+# Config local da IDE
+.claude/settings.local.json
+skills/_catalog-cache.json

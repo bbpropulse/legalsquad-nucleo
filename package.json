@@ -1,0 +1,79 @@
+{
+  "name": "legalsquad",
+  "version": "0.6.1",
+  "description": "LegalSquad — motor de orquestracao multi-agente para o Direito. Areas do Direito chegam como pacotes assinados (skills + acervo) via sync.",
+  "type": "module",
+  "bin": {
+    "legalsquad": "bin/legalsquad.js"
+  },
+  "scripts": {
+    "test": "node --import ./tests/test-setup.js --test tests/*.test.js",
+    "lint": "eslint src/ bin/ tests/ scripts/ tools/",
+    "verify": "node scripts/verify.mjs",
+    "release": "node scripts/release.mjs",
+    "build:ide": "node src/build-ide-templates.js",
+    "build:plugin": "node scripts/build-plugin.mjs",
+    "check:plugin": "node scripts/build-plugin.mjs --check",
+    "build:dist": "node scripts/build-dist.mjs",
+    "publish:dist": "bash scripts/publish-dist.sh",
+    "version": "node -e \"require('fs').writeFileSync('templates/_legalsquad/.legalsquad-version', require('./package.json').version + '\\n')\"",
+    "indexar-acervo": "node scripts/indexar-acervo.js",
+    "indexar-skills": "node scripts/indexar-skills.js",
+    "sync:blocos": "node scripts/sync-blocos.mjs",
+    "check:blocos": "node scripts/sync-blocos.mjs --check",
+    "check:skills": "node scripts/check-skills.js",
+    "audit:skills": "node scripts/audit-skill-quality.mjs",
+    "check:skill-quality": "node scripts/audit-skill-quality.mjs --check",
+    "migrate:skills:v5": "node scripts/migrate-skills-v5.mjs",
+    "generate:skill-ui": "node scripts/generate-skill-openai-metadata.mjs",
+    "check:skill-evals": "node scripts/check-skill-evals.mjs",
+    "check:legal-authorities": "node scripts/check-legal-authorities.mjs",
+    "validate:legal-output": "node scripts/validate-legal-output.mjs",
+    "eval:resumo": "node scripts/eval-resumo.mjs",
+    "prazos:hoje": "node scripts/orchestra/prazos-hoje.mjs",
+    "prazos:semana": "node scripts/orchestra/prazos-semana.mjs",
+    "intimacoes": "node scripts/orchestra/intimacoes-recentes.mjs",
+    "carteira": "node scripts/orchestra/carteira-consolidar.mjs",
+    "carteira:metricas": "node scripts/orchestra/carteira-metricas.mjs"
+  },
+  "keywords": [
+    "claude-code",
+    "ai-agents",
+    "multi-agent",
+    "orchestration",
+    "squads"
+  ],
+  "author": "Criminal Lab",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.15.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "scripts/",
+    "skills/",
+    "templates/_legalsquad/",
+    "templates/acervo/",
+    "templates/ide-templates/",
+    "templates/scripts/",
+    "templates/squads/",
+    "templates/package.json",
+    "_legalsquad/core/",
+    "_legalsquad/config/",
+    "dashboard/",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "dependencies": {
+    "@inquirer/checkbox": "^5.1.0",
+    "@inquirer/input": "^5.0.0",
+    "@inquirer/select": "^5.1.0",
+    "docx": "^9.7.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0"
+  }
+}

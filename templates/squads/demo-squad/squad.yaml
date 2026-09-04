@@ -1,0 +1,71 @@
+# Squad de exemplo — sintético, sem matéria jurídica. Instalado em toda instalação
+# nova do motor para mostrar a estrutura (paradas, loop de revisão, harness de eval).
+# Não é conteúdo jurídico e não deve ser usado em caso real.
+# GERADO por scripts/sync-templates-squads.mjs a partir de tests/fixtures/area-demo —
+# não edite aqui; edite a fixture e rode `node scripts/sync-templates-squads.mjs`.
+name: "Squad Demo"
+code: "demo-squad"
+description: >
+  Fluxo sintético de ponta a ponta (triagem → análise → redação → revisão
+  dupla em paralelo → publicação) usado só para exercitar o Pipeline Runner
+  do motor. Área fictícia "demo" — sem matéria jurídica real.
+icon: "🧪"
+version: "1.0.0"
+created: "2026-07-20"
+mode: "alta-performance"
+
+goal: "Produzir uma entrega sintética fictícia, sem valor jurídico, para testar o motor."
+success_criteria:
+  - "Objetivo e fase sempre declarados antes de qualquer passo avançar"
+  - "As duas revisões paralelas (A e B) emitem veredito independente"
+  - "Qualquer REJECT das revisões devolve o pipeline ao passo de redação"
+
+company: "_legalsquad/_memory/company.md"
+preferences: "_legalsquad/_memory/preferences.md"
+memory: "_memory/memories.md"
+
+target_audience: "Fixture de teste do motor — não é conteúdo para usuário final"
+platform: "Fixture sintética"
+format: "demo-fixture"
+performance_mode: "alta-performance"
+
+skills: []
+
+data:
+  - acervo/_index.yaml
+
+agents:
+  - id: triagem-demo
+    name: "Tara Triagem"
+    icon: "🗂️"
+    file: agents/triagem-demo.agent.md
+
+  - id: analista-demo
+    name: "Ana Análise"
+    icon: "🔎"
+    file: agents/analista-demo.agent.md
+
+  - id: redator-demo
+    name: "Rui Redação"
+    icon: "✍️"
+    file: agents/redator-demo.agent.md
+
+  - id: revisor-demo-a
+    name: "Renato Revisão A"
+    icon: "✅"
+    file: agents/revisor-demo-a.agent.md
+
+  - id: revisor-demo-b
+    name: "Raquel Revisão B"
+    icon: "🧪"
+    file: agents/revisor-demo-b.agent.md
+
+  - id: publicador-demo
+    name: "Pedro Publicação"
+    icon: "📤"
+    file: agents/publicador-demo.agent.md
+
+pipeline:
+  entry: pipeline/pipeline.yaml
+
+output_dir: output/

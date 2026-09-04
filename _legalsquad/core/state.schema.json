@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "legalsquad/state.schema.json",
+  "title": "LegalSquad squad state.json",
+  "description": "Contrato ÚNICO do squads/<nome>/state.json — escrito pelo Pipeline Runner (via scripts/squad-state.mjs) e lido pelo dashboard. Mantenha em sincronia com dashboard/src/types/state.ts (SquadState) e com a validação isValidState do dashboard.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["squad", "status", "step", "agents", "handoff", "startedAt", "updatedAt"],
+  "properties": {
+    "squad": { "type": "string", "description": "code do squad (top-level do squad.yaml)" },
+    "status": { "enum": ["idle", "running", "completed", "checkpoint", "failed"] },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current", "total", "label"],
+      "properties": {
+        "current": { "type": "integer", "minimum": 0 },
+        "total": { "type": "integer", "minimum": 0 },
+        "label": { "type": "string" }
+      }
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "icon", "status", "desk"],
+        "properties": {
+          "id": { "type": "string", "description": "casa com o campo agent: dos steps e a coluna id do squad-party.csv" },
+          "name": { "type": "string" },
+          "icon": { "type": "string" },
+          "status": { "enum": ["idle", "working", "delivering", "done", "checkpoint"] },
+          "activity": { "type": "string", "description": "frase curta do que o agente faz agora (opcional)" },
+          "desk": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["col", "row"],
+            "properties": {
+              "col": { "type": "integer" },
+              "row": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "handoff": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["from", "to", "message", "completedAt"],
+          "properties": {
+            "from": { "type": "string" },
+            "to": { "type": "string" },
+            "message": { "type": "string" },
+            "completedAt": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "startedAt": { "type": ["string", "null"] },
+    "updatedAt": { "type": "string" },
+    "completedAt": { "type": "string", "description": "definido ao concluir" },
+    "failedAt": { "type": "string", "description": "definido ao abortar" }
+  }
+}

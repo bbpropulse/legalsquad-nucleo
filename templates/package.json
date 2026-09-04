@@ -1,0 +1,25 @@
+{
+  "name": "legalsquad-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "indexar-acervo": "node scripts/indexar-acervo.mjs",
+    "indexar-autos": "node scripts/indexar-autos.mjs",
+    "autos:md": "python3 scripts/autos-para-md.py",
+    "autos:md:deps": "python3 -m pip install --user pymupdf4llm pytesseract Pillow",
+    "indexar-skills": "npx legalsquad indexar-skills",
+    "contract:skills": "npx legalsquad contract-skills",
+    "check:skills": "npx legalsquad check-skills",
+    "audit:skills": "npx legalsquad audit-skills",
+    "check:legal-authorities": "node scripts/check-legal-authorities.mjs",
+    "validate:legal-output": "node scripts/validate-legal-output.mjs",
+    "eval:resumo": "node scripts/eval-resumo.mjs",
+    "prazos:hoje": "node scripts/orchestra/prazos-hoje.mjs",
+    "prazos:semana": "node scripts/orchestra/prazos-semana.mjs",
+    "intimacoes": "node scripts/orchestra/intimacoes-recentes.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2",
+    "docx": "^9.7.1"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalsquad.local/schemas/citation-gate-manifest-v1.json",
+  "title": "LegalSquad Citation Gate Attestation v1",
+  "description": "Atestação local da verificação material de citações. O hook valida estrutura e integridade; não confirma fontes externas.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "artifact",
+    "artifact_sha256",
+    "gate_status",
+    "verification_type",
+    "scope",
+    "verified_by",
+    "verified_at",
+    "citations"
+  ],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "kind": { "const": "legalsquad.citation-gate-attestation" },
+    "artifact": { "type": "string", "minLength": 1, "pattern": "^[^/\\\\]+$" },
+    "artifact_sha256": { "type": "string", "pattern": "^(?:sha256:)?[a-fA-F0-9]{64}$" },
+    "gate_status": { "const": "aprovado" },
+    "verification_type": {
+      "const": "material",
+      "description": "Declara que alguém conferiu a citação na fonte; a sentinela não realiza essa conferência."
+    },
+    "scope": { "enum": ["citacoes_materiais", "sem_citacoes_materiais"] },
+    "verified_by": { "type": "string", "minLength": 1 },
+    "verified_at": { "type": "string", "format": "date-time" },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "status", "source_url", "consulted_at"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "status": { "const": "verificada" },
+          "source_url": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "consulted_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}
