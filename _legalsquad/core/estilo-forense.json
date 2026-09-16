@@ -1,0 +1,39 @@
+{
+  "_doc": [
+    "Modelo forense GENÉRICO — o estilo do .docx que scripts/empacotar.mjs gera a partir da peça em Markdown.",
+    "Decisão do dono (02/09/2026): começar com um modelo genérico; o escritório troca depois SEM mudar o script.",
+    "Para sobrescrever, crie `_legalsquad/estilo-escritorio.json` na raiz do projeto, com as MESMAS chaves deste arquivo.",
+    "Merge raso: cada chave de primeiro nível que o escritório declarar substitui a daqui (ex.: `fonte`, `margens_cm`, `cabecalho`).",
+    "Rede de segurança: dentro de uma chave declarada pela metade (ex.: `fonte` só com `familia`), a sub-chave omitida herda o valor deste arquivo — nunca quebra.",
+    "O script lê o do projeto se existir; senão, este. O MANIFESTO.json do pacote registra qual foi usado (nome, versão, origem).",
+    "Unidades: tamanhos em pontos (pt); medidas em centímetros (cm); entrelinha como multiplicador (1.5 = um e meio); espaços em pt.",
+    "Alinhamentos aceitos: justificado | esquerda | direita | centralizado.",
+    "Margens: convenção ABNT (superior 3, inferior 2, esquerda 3, direita 2) — o `3/2/3/2` do plano lido nessa ordem; troque à vontade.",
+    "Cabeçalho (timbrado) é texto: nome do escritório, OAB, endereço e linhas extras. Vazio (padrão) = sem cabeçalho.",
+    "Rodapé: numeração de página no formato dado; `{n}` é a página atual e `{total}` o total.",
+    "`quebra_de_pagina_antes`: títulos que abrem página nova (comparados sem acento, sem numeração e em maiúsculas — `III – DOS PEDIDOS` casa com `DOS PEDIDOS`).",
+    "`titulos`: h1 = `#`, h2 = `##`, h3 = `###` do Markdown (níveis mais fundos caem em h3)."
+  ],
+  "nome": "Forense genérico",
+  "versao": "1.0.0",
+  "pagina": { "largura_cm": 21, "altura_cm": 29.7 },
+  "margens_cm": { "superior": 3, "inferior": 2, "esquerda": 3, "direita": 2 },
+  "fonte": { "familia": "Times New Roman", "tamanho_pt": 12 },
+  "paragrafo": {
+    "alinhamento": "justificado",
+    "entrelinha": 1.5,
+    "recuo_primeira_linha_cm": 1.25,
+    "espaco_depois_pt": 6
+  },
+  "titulos": {
+    "h1": { "tamanho_pt": 12, "negrito": true, "maiusculas": true, "alinhamento": "centralizado", "espaco_antes_pt": 12, "espaco_depois_pt": 12 },
+    "h2": { "tamanho_pt": 12, "negrito": true, "maiusculas": true, "alinhamento": "esquerda", "espaco_antes_pt": 18, "espaco_depois_pt": 6 },
+    "h3": { "tamanho_pt": 12, "negrito": true, "maiusculas": false, "alinhamento": "esquerda", "espaco_antes_pt": 12, "espaco_depois_pt": 6 }
+  },
+  "citacao": { "recuo_esquerda_cm": 4, "tamanho_pt": 10, "entrelinha": 1.0, "italico": false, "espaco_depois_pt": 6 },
+  "listas": { "recuo_cm": 1.25 },
+  "tabela": { "bordas": true, "tamanho_pt": 11 },
+  "cabecalho": { "escritorio": "", "oab": "", "endereco": "", "linhas_extras": [], "tamanho_pt": 9 },
+  "rodape": { "numeracao_de_pagina": true, "formato": "Página {n} de {total}", "alinhamento": "direita", "tamanho_pt": 9 },
+  "quebra_de_pagina_antes": ["DOS PEDIDOS", "PEDIDOS"]
+}

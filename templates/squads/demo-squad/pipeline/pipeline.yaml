@@ -1,0 +1,134 @@
+name: "Pipeline — Squad Demo"
+version: "1.0.0"
+created: "2026-07-20"
+squad: "demo-squad"
+
+description: >
+  Pipeline sintético de ponta a ponta para exercitar o Pipeline Runner do motor:
+  step-id sequenciais, checkpoints, um parallel_group com dois membros convergindo
+  via depends_on e um on_reject. Área fictícia "demo" — sem matéria jurídica real.
+
+mode: "alta-performance"
+
+steps:
+  - id: step-01
+    name: "Foco da Demanda"
+    type: checkpoint
+    file: steps/step-01-foco-da-demanda.md
+
+  - id: step-02
+    name: "Triagem"
+    type: agent
+    agent: triagem-demo
+    execution: inline
+    file: steps/step-02-triagem.md
+    depends_on: step-01
+    output:
+      artifacts:
+        - output/triagem.md
+
+  - id: step-03
+    name: "Análise"
+    type: agent
+    agent: analista-demo
+    execution: subagent
+    file: steps/step-03-analise.md
+    depends_on: step-02
+    output:
+      artifacts:
+        - output/analise.md
+
+  - id: step-04
+    name: "Aprovar Análise"
+    type: checkpoint
+    file: steps/step-04-aprovar-analise.md
+    depends_on: step-03
+    output:
+      artifacts:
+        - output/analise-aprovada.md
+
+  - id: step-05
+    name: "Redação do Rascunho"
+    type: agent
+    agent: redator-demo
+    execution: inline
+    file: steps/step-05-redacao-do-rascunho.md
+    depends_on: step-04
+    output:
+      artifacts:
+        - output/rascunho-demo.md
+
+  - id: step-06
+    name: "Aprovar Rascunho"
+    type: checkpoint
+    file: steps/step-06-aprovar-rascunho.md
+    depends_on: step-05
+
+  - id: step-07
+    name: "Revisão A"
+    type: agent
+    agent: revisor-demo-a
+    execution: subagent
+    file: steps/step-07-revisao-a.md
+    depends_on: step-06
+    parallel_group: revisao-dupla-demo
+    on_reject: step-05
+    max_review_cycles: 3
+    output:
+      artifacts:
+        - output/revisao-a.md
+
+  - id: step-08
+    name: "Revisão B"
+    type: agent
+    agent: revisor-demo-b
+    execution: subagent
+    file: steps/step-08-revisao-b.md
+    depends_on: step-06
+    parallel_group: revisao-dupla-demo
+    on_reject: step-05
+    max_review_cycles: 3
+    output:
+      artifacts:
+        - output/revisao-b.md
+
+  - id: step-09
+    name: "Aprovação Final"
+    type: checkpoint
+    file: steps/step-09-aprovacao-final.md
+    depends_on: [step-07, step-08]
+    output:
+      artifacts:
+        - output/aprovacao-final.md
+
+  - id: step-10
+    name: "Publicação"
+    type: agent
+    agent: publicador-demo
+    execution: inline
+    file: steps/step-10-publicacao.md
+    depends_on: step-09
+    output:
+      artifacts:
+        - output/entrega-demo-final.md
+
+checkpoints:
+  - step-01
+  - step-04
+  - step-06
+  - step-09
+
+# Loop de revisão (não-opcional): se a Revisão A ou a Revisão B (parallel_group
+# revisao-dupla-demo) emitir REJECT, o pipeline retorna ao step-05 (redação) até
+# o rascunho sintético ser aprovado por ambas. Ver on_reject em step-07/step-08.
+
+output:
+  artifacts:
+    - output/triagem.md
+    - output/analise.md
+    - output/analise-aprovada.md
+    - output/rascunho-demo.md
+    - output/revisao-a.md
+    - output/revisao-b.md
+    - output/aprovacao-final.md
+    - output/entrega-demo-final.md

@@ -1,0 +1,93 @@
+# Squad de exemplo — sintético, sem matéria jurídica. Instalado em toda instalação
+# nova do motor para mostrar a estrutura (paradas, loop de revisão, harness de eval).
+# Não é conteúdo jurídico e não deve ser usado em caso real.
+# GERADO por scripts/sync-templates-squads.mjs a partir de tests/fixtures/area-demo —
+# não edite aqui; edite a fixture e rode `node scripts/sync-templates-squads.mjs`.
+name: "Squad Modelo de Peça"
+code: "peca-modelo"
+description: >
+  Squad-modelo de entrega jurídica na forma do plano (PLANO-ORQUESTRADOR.md):
+  três paradas humanas com nome (intake, diagnostico, aprovacao), fase zero em
+  paralelo sobre o índice dos autos, pesquisa em camadas, redação com síntese
+  primeiro, revisão com loop e pacote pronto para protocolar. Área fictícia
+  "demo" — sem matéria jurídica real; existe para exercitar o motor e servir
+  de referência ao build.
+icon: "📐"
+version: "1.0.0"
+created: "2026-09-02"
+mode: "alta-performance"
+
+goal: "Produzir uma peça sintética fictícia, sem valor jurídico, pelo caminho canônico de três paradas — para testar o motor e servir de modelo."
+success_criteria:
+  - "O profissional é parado exatamente três vezes: intake, diagnostico e aprovacao"
+  - "A fase zero roda em paralelo sobre autos/_index.yaml e o diagnóstico consolida os quatro leitores"
+  - "A peça abre com síntese e cada tese nomeia o Tema que a governa"
+  - "A aprovação mostra o pacote (docx, termo de conferência, anexos), não um Markdown"
+
+company: "_legalsquad/_memory/company.md"
+preferences: "_legalsquad/_memory/preferences.md"
+memory: "_memory/memories.md"
+
+target_audience: "Fixture de teste do motor e squad-modelo do build — não é conteúdo para usuário final"
+platform: "Fixture sintética"
+format: "demo-fixture"
+performance_mode: "alta-performance"
+
+# Pontas por tipo (Fase 7): quem lê a peça decide o gate de qualidade.
+reader: juiz
+# Voting (peça protocolável de maior risco): consenso de citações e da meta; arma o contraditor.
+citation_verifiers: 3
+meta_verifiers: 3
+
+skills: []
+
+data:
+  - acervo/_index.yaml
+
+agents:
+  - id: leitor-resumo-modelo
+    name: "Rita Resumo"
+    icon: "📄"
+    file: agents/leitor-resumo-modelo.agent.md
+
+  - id: leitor-prova-modelo
+    name: "Paulo Prova"
+    icon: "🔍"
+    file: agents/leitor-prova-modelo.agent.md
+
+  - id: adversario-modelo
+    name: "Ada Adversária"
+    icon: "⚔️"
+    file: agents/adversario-modelo.agent.md
+
+  - id: leitor-acervo-modelo
+    name: "Téo Temas"
+    icon: "📚"
+    file: agents/leitor-acervo-modelo.agent.md
+
+  - id: pesquisador-modelo
+    name: "Pia Pesquisa"
+    icon: "🧭"
+    file: agents/pesquisador-modelo.agent.md
+
+  - id: redator-modelo
+    name: "Rui Redação"
+    icon: "✍️"
+    file: agents/redator-modelo.agent.md
+
+  - id: revisor-modelo
+    name: "Regina Revisão"
+    icon: "✅"
+    file: agents/revisor-modelo.agent.md
+
+  - id: conferente-modelo
+    name: "Caio Conferência"
+    icon: "🧾"
+    file: agents/conferente-modelo.agent.md
+
+pipeline:
+  entry: pipeline/pipeline.yaml
+
+output_dir: output/
+# Ética e sigilo: todo agente deste squad opera sob a best-practice `etica-oab-sigilo`
+# (dado de cliente nunca sai da máquina; identificação nunca entra em memória ou log).
