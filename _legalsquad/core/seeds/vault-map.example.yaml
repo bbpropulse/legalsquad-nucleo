@@ -1,0 +1,36 @@
+# vault-map (EXEMPLO) — Integração FACULTATIVA com Obsidian
+#
+# Copie para `_legalsquad/_memory/vault-map.yaml` (gitignored) e preencha,
+# OU rode a skill `obsidian-vault` para gerar este arquivo automaticamente.
+#
+# Se este arquivo não existir, ou `vault_root` estiver vazio, a integração fica
+# DESATIVADA e o LegalSquad usa `acervo/` + `_legalsquad/_memory/` (padrão).
+#
+# Os agentes resolvem os tokens-papel abaixo (ex.: {{casos}}) para os nomes reais
+# das suas pastas — SEM renomear nada no seu vault. Ajuste os valores ao seu layout.
+
+# Caminho ABSOLUTO do seu vault Obsidian (vazio = integração desativada):
+vault_root: ""              # ex.: "/Users/voce/Documents/Advocacia-Vault"
+
+# --- Conhecimento jurídico (reutilizável) ---
+acervo: "Acervo"
+jurisprudencia: "Acervo/Jurisprudência"
+teses: "Acervo/Teses"
+doutrina: "Acervo/Doutrina"
+legislacao: "Acervo/Legislação"
+
+# --- Casos e pessoas (SIGILOSO — só no vault local) ---
+casos: "Casos"
+pessoas: "Pessoas"          # CRM: clientes, juízes, promotores, peritos, testemunhas
+
+# --- Operação e registros (SIGILOSO) ---
+audiencias: "Audiências"
+transcricoes: "Transcrições"
+comunicacoes: "Comunicações"
+dados: "Dados"
+
+# --- Memória permanente ---
+memoria: "Memória"
+diario: "Memória/Diário"
+templates: "Templates"
+meta: "Meta"

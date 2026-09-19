@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalsquad.local/schemas/citation-gate-manifest-v1.json",
+  "title": "LegalSquad Citation Gate Attestation v1",
+  "description": "Atestação local da verificação material de citações. O hook valida estrutura e integridade; não confirma fontes externas.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "artifact",
+    "artifact_sha256",
+    "gate_status",
+    "verification_type",
+    "scope",
+    "verified_by",
+    "verified_at",
+    "citations"
+  ],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "kind": { "const": "legalsquad.citation-gate-attestation" },
+    "artifact": { "type": "string", "minLength": 1, "pattern": "^[^/\\\\]+$" },
+    "artifact_sha256": { "type": "string", "pattern": "^(?:sha256:)?[a-fA-F0-9]{64}$" },
+    "gate_status": { "const": "aprovado" },
+    "verification_type": {
+      "const": "material",
+      "description": "Declara que alguém conferiu a citação na fonte; a sentinela não realiza essa conferência."
+    },
+    "scope": { "enum": ["citacoes_materiais", "sem_citacoes_materiais"] },
+    "verified_by": { "type": "string", "minLength": 1 },
+    "verified_at": { "type": "string", "format": "date-time" },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "status", "source_url", "consulted_at"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1, "description": "Identificação da norma ou julgado com a MESMA classe e o MESMO número que aparecem na peça (CPC, art. 373; Súmula 7/STJ; Tema 1.234; REsp 1.234.567/SP). O hook exige uma entrada assim para cada citação material do texto; sigla ou nome por extenso valem." },
+          "status": { "const": "verificada" },
+          "source_url": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "consulted_at": { "type": "string", "format": "date-time" },
+          "evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Prova de acesso gravada por código (scripts/fonte-oficial.mjs) para a reabertura final comparar sem LLM. Opcional: citação conferida só com leitura continua válida.",
+            "properties": {
+              "sha256_texto": { "type": "string", "pattern": "^[a-f0-9]{64}$", "description": "SHA-256 do texto extraído e normalizado da fonte." },
+              "sha256_bytes": { "type": "string", "pattern": "^[a-f0-9]{64}$", "description": "SHA-256 dos bytes baixados (PDF sem extração de texto)." },
+              "trecho": { "type": "string", "minLength": 8, "description": "Trecho literal da fonte que sustenta a citação; é o que a reabertura procura quando o hash muda por causa de carimbo de data ou sessão." },
+              "fonte_local": { "type": "string", "minLength": 1, "description": "Caminho da cópia local, relativo à raiz do projeto." },
+              "registro": { "type": "string", "minLength": 1, "description": "Número de registro do acórdão no tribunal (STJ: AAAA/NNNNNNN-D)." },
+              "dt_publicacao": { "type": "string", "minLength": 1, "description": "Data de publicação que o tribunal usa na URL do inteiro teor." }
+            }
+          }
+        }
+      }
+    }
+  }
+}

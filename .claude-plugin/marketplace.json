@@ -1,0 +1,14 @@
+{
+  "name": "bbpropulse",
+  "description": "Marketplace da bbpropulse — plugins do Claude Code para a prática jurídica.",
+  "owner": {
+    "name": "bbpropulse",
+    "url": "https://github.com/bbpropulse"
+  },
+  "plugins": [
+    {
+      "name": "legalsquad",
+      "source": "./plugin"
+    }
+  ]
+}
