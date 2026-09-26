@@ -1,0 +1,46 @@
+{
+  "description": "LegalSquad: prepara a máquina no início da conversa, backstop de citações e disparador dos hooks do projeto.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v node >/dev/null 2>&1; then node \"${CLAUDE_PLUGIN_ROOT}/motor/src/plugin-sessao.js\"; else printf '%s\\n' '{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"O plugin LegalSquad está instalado, mas o Node.js não foi encontrado neste computador, e o motor do LegalSquad roda em Node. Para pedidos jurídicos: diga ao usuário, em linguagem simples, que falta instalar o Node.js (versão LTS, 22.15 ou mais nova) pelo instalador de https://nodejs.org, com as opções padrão, e depois fechar e abrir o Claude. Não instale o LegalSquad por npm nem por git, e não tente instalar o Node por conta própria. Até lá, os gates de citação também não rodam: nenhuma súmula ou precedente citado de memória.\"},\"systemMessage\":\"LegalSquad: falta o Node.js neste computador. Baixe o instalador da versão LTS em https://nodejs.org, instale com as opções padrão e abra o Claude de novo.\"}'; fi",
+            "timeout": 30,
+            "statusMessage": "LegalSquad · preparando o motor desta máquina"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/legalsquad-disparador.mjs\" pre",
+            "statusMessage": "LegalSquad · guarda de memória do projeto do arquivo"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/verifica-citacoes.mjs\"",
+            "statusMessage": "LegalSquad · backstop de citações (advisory)"
+          },
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/legalsquad-disparador.mjs\" post",
+            "statusMessage": "LegalSquad · gates do projeto do arquivo"
+          }
+        ]
+      }
+    ]
+  }
+}

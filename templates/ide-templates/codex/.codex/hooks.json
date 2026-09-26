@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".codex/hooks/verifica-citacoes.mjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \".codex/hooks/verifica-redacao.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}

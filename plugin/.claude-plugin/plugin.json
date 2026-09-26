@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "legalsquad",
+  "description": "LegalSquad para o Claude Code: orquestração multi-agente para a prática jurídica, instalada só pelo Claude, sem terminal. Traz o motor (init, sync das áreas do Direito, squads, empacotador), a skill /legalsquad, os agentes de núcleo (verificador de citações, avaliador de squad, catalog-scout, verificador de persuasão, contraditor) e os gates determinísticos de citação e redação. Requer Node.js 22.15 ou mais novo.",
+  "version": "0.9.58",
+  "author": {
+    "name": "Criminal Lab"
+  },
+  "homepage": "https://github.com/bbpropulse/legalsquad-nucleo",
+  "repository": "https://github.com/bbpropulse/legalsquad-nucleo",
+  "license": "UNLICENSED",
+  "keywords": [
+    "claude-code",
+    "ai-agents",
+    "multi-agent",
+    "orchestration",
+    "squads"
+  ]
+}

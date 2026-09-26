@@ -1,0 +1,16 @@
+{
+  "name": "legalsquad-plugin",
+  "version": "0.9.58",
+  "private": true,
+  "description": "Dependências de runtime do motor LegalSquad embutido neste plugin (instaladas pelo Claude Code com npm ci).",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@inquirer/checkbox": "^5.1.0",
+    "@inquirer/input": "^5.0.0",
+    "@inquirer/select": "^5.1.0",
+    "docx": "^9.7.1"
+  },
+  "engines": {
+    "node": ">=22.15.0"
+  }
+}
