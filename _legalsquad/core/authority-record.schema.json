@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "legalsquad/authority-record.schema.json",
+  "title": "Registro vivo de autoridades jurídicas",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "topic", "operational_status", "verified_at", "revalidate_policy", "human_review", "sources", "affected_skills", "affected_eval_cases"],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "topic": { "type": "string", "minLength": 1 },
+    "operational_status": { "enum": ["active", "pilot", "quarantined"] },
+    "verified_at": { "type": "string", "format": "date" },
+    "revalidate_policy": { "enum": ["same_day", "daily", "weekly", "monthly", "on_change"] },
+    "human_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewed_at"],
+      "properties": {
+        "status": { "enum": ["pending", "approved", "rejected"] },
+        "reviewer": { "type": ["string", "null"] },
+        "reviewed_at": { "type": ["string", "null"], "format": "date" }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "official_url", "verified_at", "status", "scope"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "enum": ["legislation", "case", "docket", "official_news", "administrative_act"] },
+          "title": { "type": "string" },
+          "official_url": { "type": "string", "format": "uri" },
+          "verified_at": { "type": "string", "format": "date" },
+          "status": { "enum": ["verified_official", "discovery_only", "quarantined"] },
+          "scope": { "type": "string" }
+        }
+      }
+    },
+    "affected_skills": { "type": "array", "items": { "type": "string" } },
+    "affected_eval_cases": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

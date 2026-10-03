@@ -1,0 +1,9 @@
+#!/bin/sh
+# LegalSquad: o comando `legalsquad` no shell do Claude Code, vindo do plugin.
+# Gerado por scripts/build-plugin.mjs. Roda o motor embutido em ../motor/.
+aqui=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if ! command -v node >/dev/null 2>&1; then
+  echo "LegalSquad: o Node.js não foi encontrado neste computador. Instale a versão LTS pelo instalador de https://nodejs.org e abra o Claude de novo." >&2
+  exit 127
+fi
+exec node "$aqui/../motor/bin/legalsquad.js" "$@"
