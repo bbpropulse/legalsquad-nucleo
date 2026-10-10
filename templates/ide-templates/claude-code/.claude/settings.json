@@ -1,0 +1,32 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/verifica-citacoes.mjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/verifica-redacao.mjs\""
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "^(verificador-citacoes|verificador-persuasao|avaliador-squad|contraditor|general-purpose)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/retorno-subagente.mjs\"",
+            "timeout": 60,
+            "statusMessage": "LegalSquad · retorno do subagente"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+// ---------------------------------------------------------------------------
+// Squads de um projeto, com a ÁREA DE ORIGEM de cada um.
+//
+// Revisão de 22/09/2026: num escritório cível, o chefe reusou "Sala de Recursos
+// Criminais" para embargos de declaração contra sentença cível, porque `squads/`
+// recebe os squads prontos de todo pacote ligado (o criminal traz seis, o
+// trabalhista três; o civil traz só modelos) e nada dizia de que área cada um
+// veio. A área é um FILTRO do roteador: squad de outra área nunca é candidato a
+// reuso, mesmo com o mesmo nome de peça.
+//
+// De onde vem a área, nesta ordem: `area:` declarado no squad.yaml (do
+// profissional) › o modelo que o gerou (`_build/modelo-origem.json` → `area` do
+// `modelo.yaml`) › o pacote que o trouxe (registro do depósito: `squads/<code>/
+// squad.yaml` → `pack_id` → slug) › nenhuma (`sem_area`, nunca "outra área").
+// ---------------------------------------------------------------------------
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { ligacaoDoProjeto, normalizarSlugDeArea, ramosDoDeposito, slugDoPack, squadAposentado } from './deposito.js';
+import { listarModelos } from './squad-modelo.js';
+import { casaArea, ramosDaArea } from './area.js';
+import { escalarDeChave } from './squad-check.js';
+
+const escalar = (y, chave) => escalarDeChave(String(y || ''), chave) || '';
+
+// Os squads de demonstração que o init instala (demo-squad, peca-modelo) não têm área nem servem a
+// caso real; o que os identifica é o cabeçalho que `scripts/sync-templates-squads.mjs` grava no
+// squad.yaml. Ficam fora de `sem_area`, que o roteador pergunta se serve (achado 3 do run de 01/10/2026).
+const RE_DEMONSTRACAO = /^# Squad de exemplo, sintético e sem matéria jurídica\./m;
+
+function lerJsonOuNulo(caminho) {
+  try { return JSON.parse(readFileSync(caminho, 'utf8')); } catch { return null; }
+}
+
+/** `Map<path, { pack_id }>` só das entradas `squads/` dos registros do depósito. */
+function squadsDoDeposito(deposito) {
+  const pasta = join(deposito, 'acervo', '_packs', '_arquivos');
+  let nomes;
+  try { nomes = readdirSync(pasta).filter((n) => n.endsWith('.json')); } catch { return null; }
+  const mapa = new Map();
+  for (const nome of nomes) {
+    const registro = lerJsonOuNulo(join(pasta, nome));
+    for (const a of registro?.arquivos || []) if (typeof a?.path === 'string' && a.path.startsWith('squads/')) mapa.set(a.path, { pack_id: registro.pack_id });
+  }
+  return mapa;
+}
+
+/**
+ * Lista `squads/<code>/` (fora `_modelos` e pastas ocultas) com nome, meta, área e
+ * origem da área. `registros` (Map path → { pack_id }) pode ser injetado nos testes;
+ * por padrão vem do depósito ao qual o projeto está ligado.
+ */
+export function listarSquads(cwd, { registros = undefined } = {}) {
+  const squadsDir = join(cwd, 'squads');
+  if (!existsSync(squadsDir)) return [];
+  let mapa = registros;
+  if (mapa === undefined) {
+    // Só as entradas `squads/` dos registros: o mapa inteiro do depósito tem dezenas de
+    // milhares de skills e julgados, e aqui bastam os poucos squads que os pacotes trazem.
+    const ligacao = ligacaoDoProjeto(cwd);
+    mapa = ligacao?.deposito ? squadsDoDeposito(ligacao.deposito) : null;
+  }
+  const modelos = new Map(listarModelos(cwd).map((m) => [m.id, m.meta || {}]));
+  const squads = [];
+  for (const e of readdirSync(squadsDir, { withFileTypes: true })) {
+    if (!e.isDirectory() || e.name.startsWith('_') || e.name.startsWith('.')) continue;
+    const yamlPath = join(squadsDir, e.name, 'squad.yaml');
+    if (!existsSync(yamlPath)) continue;
+    const y = readFileSync(yamlPath, 'utf8');
+    const item = { code: e.name, nome: escalar(y, 'name') || e.name, goal: escalar(y, 'goal'), area: null, area_slug: null, origem_da_area: 'nenhuma', modelo: null, pacote: null, ...(RE_DEMONSTRACAO.test(y) ? { demonstracao: true } : {}) };
+    // Aposentado pelo curador (`aposentado: true`): quem o tem segue com ele e o roda pelo nome, mas
+    // ele nunca é candidato a REUSAR; `substituido_por` nomeia os modelos que o substituem.
+    if (squadAposentado(y)) {
+      item.aposentado = true;
+      item.substituido_por = escalar(y, 'substituido_por').split(',').map((x) => x.trim()).filter(Boolean);
+    }
+    const declarada = escalar(y, 'area');
+    const origem = lerJsonOuNulo(join(squadsDir, e.name, '_build', 'modelo-origem.json'));
+    if (origem?.modelo) item.modelo = String(origem.modelo);
+    const doPack = mapa?.get(`squads/${e.name}/squad.yaml`)?.pack_id || null;
+    if (doPack) item.pacote = doPack;
+    if (declarada) {
+      item.area = declarada; item.origem_da_area = 'declarada';
+    } else if (item.modelo && modelos.get(item.modelo)?.area) {
+      item.area = String(modelos.get(item.modelo).area); item.origem_da_area = 'modelo';
+    } else if (doPack && slugDoPack(doPack)) {
+      item.area = slugDoPack(doPack); item.origem_da_area = 'pacote';
+    }
+    item.area_slug = item.area ? normalizarSlugDeArea(item.area) : null;
+    // Pronto que veio do pacote (não nasceu de modelo nem do escritório): o roteador só o reusa quando
+    // nenhum squad-modelo da área cobre o pedido (o diário do m1, item 4: o chefe escolheu o pronto de
+    // recursos com o modelo de apelação disponível).
+    if (doPack && !item.modelo) item.do_pacote = true;
+    squads.push(item);
+  }
+  return squads.sort((a, b) => a.code.localeCompare(b.code));
+}
+
+/** Separa os squads do projeto pela área do caso: `da_area`, `de_outra_area`, `sem_area`, os de `demonstracao` e os `aposentados`. */
+export function squadsPorArea(cwd, areaPedida, opcoes = {}) {
+  const todos = listarSquads(cwd, opcoes);
+  // Ramos do curador ("família" mora no pacote civil); `opcoes.ramos` só nos testes.
+  const ramos = opcoes.ramos ?? ramosDoDeposito(ligacaoDoProjeto(cwd)?.deposito);
+  const area = areaPedida ? String(areaPedida) : null;
+  const da_area = [];
+  const de_outra_area = [];
+  const sem_area = [];
+  const demonstracao = [];
+  const aposentados = [];
+  for (const s of todos) {
+    if (s.demonstracao) demonstracao.push(s);
+    else if (s.aposentado) aposentados.push(s);
+    else if (!s.area) sem_area.push(s);
+    else if (!area || casaArea(s.area, area, ramosDaArea(s.area, ramos))) da_area.push(s);
+    else de_outra_area.push(s);
+  }
+  // Dos candidatos da área, os prontos de pacote: REUSAR só depois do seletor de modelos.
+  const prontos_do_pacote = da_area.filter((s) => s.do_pacote);
+  return { area_pedida: area, squads: todos, da_area, de_outra_area, sem_area, demonstracao, aposentados, prontos_do_pacote };
+}
+
+/** CLI: `npx legalsquad squads [--area <área>] [--json]`. */
+export function squadsCli(cwd, values = {}) {
+  const r = squadsPorArea(cwd, values.area ? String(values.area) : null);
+  if (values.json === true) {
+    const codes = (xs) => xs.map((s) => s.code);
+    console.log(JSON.stringify({ success: true, ...r, da_area: codes(r.da_area), de_outra_area: codes(r.de_outra_area), sem_area: codes(r.sem_area), demonstracao: codes(r.demonstracao), aposentados: codes(r.aposentados), prontos_do_pacote: codes(r.prontos_do_pacote) }, null, 2));
+    return { success: true };
+  }
+  const linha = (s) => `    ${s.code.padEnd(30)} ${s.nome}${s.area ? ` · área ${s.area} (${s.origem_da_area})` : ' · sem área'}${s.do_pacote && !s.aposentado ? ' · pronto do pacote' : ''}${s.aposentado && s.substituido_por?.length ? ` · substituído por ${s.substituido_por.join(', ')}` : ''}`;
+  if (!r.squads.length) { console.log('  nenhum squad em squads/'); return { success: true }; }
+  if (r.area_pedida) {
+    console.log(`  Área do caso: ${r.area_pedida}`);
+    console.log(`  Da área (${r.da_area.length}):`); for (const s of r.da_area) console.log(linha(s));
+    console.log(`  De outra área (${r.de_outra_area.length}, nunca candidatos a reuso):`); for (const s of r.de_outra_area) console.log(linha(s));
+    if (r.sem_area.length) { console.log(`  Sem área declarada (${r.sem_area.length}; declare \`area:\` no squad.yaml):`); for (const s of r.sem_area) console.log(linha(s)); }
+    if (r.demonstracao.length) console.log(`  De demonstração (${r.demonstracao.length}, sintéticos, nunca candidatos): ${r.demonstracao.map((s) => s.code).join(', ')}`);
+    if (r.aposentados.length) { console.log(`  Aposentados (${r.aposentados.length}, nunca candidatos; rodam pelo nome para quem já os usa):`); for (const s of r.aposentados) console.log(linha(s)); }
+  } else {
+    console.log(`  ${r.squads.length} squad(s) em squads/:`); for (const s of r.squads) console.log(linha(s));
+  }
+  return { success: true };
+}

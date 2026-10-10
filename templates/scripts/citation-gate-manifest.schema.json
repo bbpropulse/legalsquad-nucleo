@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legalsquad.local/schemas/citation-gate-manifest-v1.json",
+  "title": "LegalSquad Citation Gate Attestation v1",
+  "description": "Atestação local da verificação material de citações. O hook valida estrutura e integridade; não confirma fontes externas.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "artifact",
+    "artifact_sha256",
+    "gate_status",
+    "verification_type",
+    "scope",
+    "verified_by",
+    "verified_at",
+    "citations"
+  ],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "kind": { "const": "legalsquad.citation-gate-attestation" },
+    "artifact": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![/]|[A-Za-z]:)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)[^\\\\]+$",
+      "description": "A peça: o nome do arquivo (apelacao-final.md) ou um caminho relativo que termine nele (squads/x/output/<run>/v10/apelacao-final.md). Caminho absoluto, com .. ou com barra invertida é recusado, e o hook confere que o caminho aponta a peça ao lado do manifesto. Quem grava é `squad-state manifesto-final`, a partir do cartório do run."
+    },
+    "artifact_sha256": { "type": "string", "pattern": "^(?:sha256:)?[a-fA-F0-9]{64}$" },
+    "gate_status": { "const": "aprovado" },
+    "verification_type": {
+      "const": "material",
+      "description": "Declara que alguém conferiu a citação na fonte; a sentinela não realiza essa conferência."
+    },
+    "scope": { "enum": ["citacoes_materiais", "sem_citacoes_materiais"] },
+    "verified_by": { "type": "string", "minLength": 1 },
+    "verified_at": { "type": "string", "format": "date-time" },
+    "pendencias_do_profissional": {
+      "type": "array",
+      "description": "Marcadores de DADO que ficam na peça final ([CONFIRMAR], [PREENCHER], [DILIGÊNCIA]): o fato que depende do profissional ou do cliente. O hook exige uma entrada por ocorrência de marcador no texto (onze [CONFIRMAR] são onze entradas, cada uma com o seu onde), e nenhuma entrada que o texto não tenha; a parada aprovação mostra a lista. Marcador de citação ([NÃO VERIFICADO], [DIVERGENTE], [CONFERIR]) nunca entra aqui: bloqueia a final.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["marcador", "onde", "procurado_em", "diligencia"],
+        "properties": {
+          "marcador": { "type": "string", "minLength": 3, "description": "O marcador literal, como está na peça (ex.: [CONFIRMAR: data da dispensa])." },
+          "onde": { "type": "string", "minLength": 1, "description": "Capítulo, parágrafo ou item da peça." },
+          "procurado_em": { "type": "string", "minLength": 1, "description": "Onde o dado foi procurado e não estava (índice dos autos, documento, intake)." },
+          "diligencia": { "type": "string", "minLength": 1, "description": "O que o profissional faz para resolver antes do protocolo." }
+        }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "status", "source_url", "consulted_at"],
+        "if": { "properties": { "status": { "const": "verificada_no_acervo" } } },
+        "then": { "required": ["evidence"], "properties": { "evidence": { "required": ["fonte_local"], "properties": { "fonte_local": { "pattern": "(^|[\\\\/])acervo[\\\\/]" } } } } },
+        "properties": {
+          "title": { "type": "string", "minLength": 1, "description": "Identificação da norma ou julgado com a MESMA classe e o MESMO número que aparecem na peça (CPC, art. 373; Súmula 7/STJ; Tema 1.234; REsp 1.234.567/SP). O hook exige uma entrada assim para cada citação material do texto; sigla ou nome por extenso valem." },
+          "status": { "enum": ["verificada", "verificada_no_acervo"], "description": "verificada: a fonte oficial foi aberta e conferida no run. verificada_no_acervo: conferida na cópia do acervo assinado (captura oficial do curador), declarada como tal; exige evidence.fonte_local dentro de acervo/. Nunca se apresenta como a página do tribunal aberta." },
+          "source_url": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "consulted_at": { "type": "string", "format": "date-time" },
+          "verificadores": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Quem confirmou a citação neste run, na ordem do cartório (verificador-citacoes, reabertura, votantes do gate final). Opcional.",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Prova de acesso gravada por código (scripts/fonte-oficial.mjs) para a reabertura final comparar sem LLM. Opcional: citação conferida só com leitura continua válida.",
+            "properties": {
+              "sha256_texto": { "type": "string", "pattern": "^[a-f0-9]{64}$", "description": "SHA-256 do texto extraído e normalizado da fonte." },
+              "sha256_bytes": { "type": "string", "pattern": "^[a-f0-9]{64}$", "description": "SHA-256 dos bytes baixados (PDF sem extração de texto)." },
+              "trecho": { "type": "string", "minLength": 8, "description": "Trecho literal da fonte que sustenta a citação; é o que a reabertura procura quando o hash muda por causa de carimbo de data ou sessão." },
+              "fonte_local": { "type": "string", "minLength": 1, "description": "Caminho da cópia local, relativo à raiz do projeto." },
+              "registro": { "type": "string", "minLength": 1, "description": "Número de registro do acórdão no tribunal (STJ: AAAA/NNNNNNN-D)." },
+              "dt_publicacao": { "type": "string", "minLength": 1, "description": "Data de publicação que o tribunal usa na URL do inteiro teor." }
+            }
+          }
+        }
+      }
+    }
+  }
+}

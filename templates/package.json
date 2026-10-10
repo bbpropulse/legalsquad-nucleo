@@ -1,0 +1,28 @@
+{
+  "name": "legalsquad-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dashboard": "npx legalsquad dashboard",
+    "indexar-acervo": "node scripts/indexar-acervo.mjs",
+    "indexar-autos": "node scripts/indexar-autos.mjs",
+    "autos:md": "node scripts/autos-md.mjs",
+    "autos:md:deps": "node scripts/autos-md.mjs --deps",
+    "sumario:autos": "node scripts/sumario-autos.mjs",
+    "indexar-skills": "npx legalsquad indexar-skills",
+    "contract:skills": "npx legalsquad contract-skills",
+    "check:skills": "npx legalsquad check-skills",
+    "audit:skills": "npx legalsquad audit-skills",
+    "check:legal-authorities": "node scripts/check-legal-authorities.mjs",
+    "validate:legal-output": "node scripts/validate-legal-output.mjs",
+    "eval:resumo": "node scripts/eval-resumo.mjs",
+    "prazos:hoje": "node scripts/orchestra/prazos-hoje.mjs",
+    "prazos:semana": "node scripts/orchestra/prazos-semana.mjs",
+    "intimacoes": "node scripts/orchestra/intimacoes-recentes.mjs"
+  },
+  "dependencies": {
+    "legalsquad": "file:_legalsquad/motor",
+    "playwright": "^1.58.2",
+    "docx": "^9.7.1"
+  }
+}
