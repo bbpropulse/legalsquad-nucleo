@@ -1,0 +1,9 @@
+id,name,icon,role,path,execution,skills
+leitor-resumo-modelo,Rita Resumo,📄,"Fase zero: lê autos/_index.yaml e diz o que o caso é (resumo sintético).",./agents/leitor-resumo-modelo.agent.md,subagent,
+leitor-prova-modelo,Paulo Prova,🔍,"Fase zero: o que a prova dos autos sustenta e o que contradiz (sintético).",./agents/leitor-prova-modelo.agent.md,subagent,
+adversario-modelo,Ada Adversária,⚔️,"Fase zero: despacha o contraditor em modo pré-mortem sobre as teses candidatas.",./agents/adversario-modelo.agent.md,subagent,
+leitor-acervo-modelo,Téo Temas,📚,"Fase zero: Tema, súmula ou repetitivo do acervo local que governa cada tese candidata.",./agents/leitor-acervo-modelo.agent.md,subagent,
+pesquisador-modelo,Pia Pesquisa,🧭,"Pesquisa em camadas conforme o escopo do intake; tabela Tema por tese; [NÃO VERIFICADO] na dúvida.",./agents/pesquisador-modelo.agent.md,subagent,
+redator-modelo,Rui Redação,✍️,"Redige a peça sintética: síntese primeiro, todo argumento com fundamento da pesquisa, folhas dos autos.",./agents/redator-modelo.agent.md,inline,
+revisor-modelo,Regina Revisão,✅,"Revisão isolada com veredito estruturado; condiciona o APPROVE ao verificador de citações.",./agents/revisor-modelo.agent.md,subagent,
+conferente-modelo,Caio Conferência,🧾,"Fora do loop: consolida a versão final revisada para o Citation Gate com voting e a verificação da meta, antes da aprovação.",./agents/conferente-modelo.agent.md,subagent,
