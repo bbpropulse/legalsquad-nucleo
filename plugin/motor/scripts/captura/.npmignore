@@ -1,0 +1,6 @@
+# O `files` do package.json vence o .npmignore da raiz para os caminhos que ele
+# inclui (scripts/), entao a exclusao do bytecode Python precisa morar aqui dentro.
+# Motivo: .pyc nao serve para nada no tarball e grava o caminho absoluto da
+# maquina que compilou (vaza o layout de disco do autor).
+__pycache__/
+*.pyc
