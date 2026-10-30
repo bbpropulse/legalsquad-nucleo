@@ -1,0 +1,10 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "isolated": false,
+    "userDataDir": "_legalsquad/_browser_profile",
+    "launchOptions": {
+      "headless": true
+    }
+  }
+}
