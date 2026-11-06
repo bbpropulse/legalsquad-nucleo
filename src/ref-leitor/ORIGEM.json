@@ -1,0 +1,40 @@
+{
+  "servidor": "legalsquad-ref-server/src",
+  "commit": "824cb9b",
+  "copiado_em": "2026-11-04",
+  "arquivos": {
+    "normalizar.js": {
+      "sha256_servidor": "231a8c2a05047cc82378c9cac634ed591a7eb4943da65c36b30a53f82f0f0bdd",
+      "sha256_motor": "231a8c2a05047cc82378c9cac634ed591a7eb4943da65c36b30a53f82f0f0bdd",
+      "transformacoes": 0
+    },
+    "ids.js": {
+      "sha256_servidor": "1202ab9ad509c2eae5d3d7137e340d7ed55e755bc498cc5d2be3f457f6fa4045",
+      "sha256_motor": "d58eb6cf0adb1836a3f62cfc5ba2be26912e56ad576c3fab31a634063e935632",
+      "transformacoes": 1
+    },
+    "citacao.js": {
+      "sha256_servidor": "a1e44f91a371ed04333479fbcb085f76733a2140679326153abf5a181d10dc66",
+      "sha256_motor": "a1e44f91a371ed04333479fbcb085f76733a2140679326153abf5a181d10dc66",
+      "transformacoes": 0
+    },
+    "conferir.js": {
+      "sha256_servidor": "861f9b4f11c9a6bff54078498eb4f3645c28871f7f7bc7e568760e6cbe1c488c",
+      "sha256_motor": "861f9b4f11c9a6bff54078498eb4f3645c28871f7f7bc7e568760e6cbe1c488c",
+      "transformacoes": 0
+    },
+    "dispositivos.js": {
+      "sha256_servidor": "b4f7253352fba94a40e4fc9e71f3db8c80be94e2afe346471e4d6d5061e5965f",
+      "sha256_motor": "b4f7253352fba94a40e4fc9e71f3db8c80be94e2afe346471e4d6d5061e5965f",
+      "transformacoes": 0
+    },
+    "artigo-assinado.js": {
+      "sha256_servidor": "88b1da6d031dee33c36ae0f3805ff0796b066dde7d7d74907fcc2c6e106231e6",
+      "sha256_motor": "88b1da6d031dee33c36ae0f3805ff0796b066dde7d7d74907fcc2c6e106231e6",
+      "transformacoes": 0
+    },
+    "tests/citacao.test.js": {
+      "sha256_servidor": "b8a207b62102b123330750678f400615a2b122ff8f3f57c7e2359bc9f0eb70bc"
+    }
+  }
+}

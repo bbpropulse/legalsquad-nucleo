@@ -1,0 +1,10 @@
+{
+  "name": "legalsquad",
+  "version": "0.0.0-atalho",
+  "private": true,
+  "description": "Atalho local: `npx legalsquad` neste projeto roda o motor LegalSquad instalado na máquina, sem depender do PATH.",
+  "type": "module",
+  "bin": {
+    "legalsquad": "cli.mjs"
+  }
+}
