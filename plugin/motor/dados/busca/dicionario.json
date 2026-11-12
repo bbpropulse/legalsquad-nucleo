@@ -1,0 +1,1167 @@
+{
+  "versao": 1,
+  "descricao": "Dicionário de consulta da busca local: equivalências que o advogado digita e o texto da norma não traz. Editável. Para acrescentar ou trocar entradas sem mexer neste arquivo, crie ~/.legalsquad/busca/dicionario.json (ou <LEGALSQUAD_REF_DIR>/busca/dicionario.json) com as mesmas chaves; as entradas dele somam às daqui. As siglas de diplomas (CDC, CLT, LGPD...) NÃO ficam aqui: vêm da tabela de apelidos do índice assinado.",
+  "equivalencias": [
+    {
+      "quando": [
+        "negativacao",
+        "negativar",
+        "negativado"
+      ],
+      "acrescentar": [
+        "inscricao",
+        "cadastro",
+        "inadimplente",
+        "spc",
+        "serasa",
+        "protecao",
+        "credito"
+      ]
+    },
+    {
+      "quando": [
+        "erro medico",
+        "responsabilidade medica",
+        "medico"
+      ],
+      "acrescentar": [
+        "profissional",
+        "liberal",
+        "hospital",
+        "saude",
+        "culpa"
+      ]
+    },
+    {
+      "quando": [
+        "dano moral",
+        "danos morais"
+      ],
+      "acrescentar": [
+        "extrapatrimonial",
+        "indenizacao",
+        "reparacao"
+      ]
+    },
+    {
+      "quando": [
+        "trabalho em altura",
+        "trabalho em alturas"
+      ],
+      "acrescentar": [
+        "nr",
+        "35"
+      ]
+    },
+    {
+      "quando": [
+        "nr"
+      ],
+      "acrescentar": [
+        "norma",
+        "regulamentadora",
+        "seguranca",
+        "saude",
+        "trabalho"
+      ]
+    },
+    {
+      "quando": [
+        "despejo"
+      ],
+      "acrescentar": [
+        "locacao",
+        "inquilino",
+        "locador"
+      ]
+    },
+    {
+      "quando": [
+        "aposentadoria especial"
+      ],
+      "acrescentar": [
+        "nocivos",
+        "insalubre",
+        "perigosa"
+      ]
+    },
+    {
+      "quando": [
+        "aviso previo"
+      ],
+      "acrescentar": [
+        "rescisao",
+        "dispensa"
+      ]
+    },
+    {
+      "quando": [
+        "vazamento de dados",
+        "incidente de seguranca"
+      ],
+      "acrescentar": [
+        "comunicacao",
+        "controlador",
+        "anpd",
+        "autoridade"
+      ]
+    },
+    {
+      "quando": [
+        "dados sensiveis",
+        "dado sensivel"
+      ],
+      "acrescentar": [
+        "pessoal",
+        "tratamento",
+        "titular"
+      ]
+    },
+    {
+      "quando": [
+        "plano de saude",
+        "planos de saude"
+      ],
+      "acrescentar": [
+        "operadora",
+        "beneficiario",
+        "ans"
+      ]
+    },
+    {
+      "quando": [
+        "recuperacao judicial"
+      ],
+      "acrescentar": [
+        "credores",
+        "plano",
+        "falencia"
+      ]
+    },
+    {
+      "quando": [
+        "alimentos"
+      ],
+      "acrescentar": [
+        "alimentante",
+        "alimentando",
+        "pensao"
+      ]
+    },
+    {
+      "quando": [
+        "guarda compartilhada"
+      ],
+      "acrescentar": [
+        "filhos",
+        "poder",
+        "familiar"
+      ]
+    },
+    {
+      "quando": [
+        "heranca",
+        "herdeiros"
+      ],
+      "acrescentar": [
+        "sucessao",
+        "inventario",
+        "partilha",
+        "legitima"
+      ]
+    },
+    {
+      "quando": [
+        "inelegibilidade",
+        "ficha limpa"
+      ],
+      "acrescentar": [
+        "candidato",
+        "eleitoral",
+        "registro"
+      ]
+    },
+    {
+      "quando": [
+        "propaganda eleitoral"
+      ],
+      "acrescentar": [
+        "candidato",
+        "campanha",
+        "eleitoral"
+      ]
+    },
+    {
+      "quando": [
+        "licitacao"
+      ],
+      "acrescentar": [
+        "contratacao",
+        "edital",
+        "pregao"
+      ]
+    },
+    {
+      "quando": [
+        "improbidade"
+      ],
+      "acrescentar": [
+        "administrativa",
+        "enriquecimento",
+        "agente"
+      ]
+    },
+    {
+      "quando": [
+        "execucao fiscal"
+      ],
+      "acrescentar": [
+        "fazenda",
+        "divida",
+        "ativa",
+        "certidao"
+      ]
+    },
+    {
+      "quando": [
+        "licenciamento ambiental"
+      ],
+      "acrescentar": [
+        "licenca",
+        "empreendimento",
+        "competencia"
+      ]
+    },
+    {
+      "quando": [
+        "dano ambiental"
+      ],
+      "acrescentar": [
+        "poluidor",
+        "reparacao",
+        "objetiva"
+      ]
+    },
+    {
+      "quando": [
+        "despesas condominiais",
+        "cota condominial"
+      ],
+      "acrescentar": [
+        "condomino",
+        "condominio",
+        "rateio"
+      ]
+    },
+    {
+      "quando": [
+        "fiador",
+        "fianca"
+      ],
+      "acrescentar": [
+        "garantia",
+        "locacao",
+        "beneficio"
+      ]
+    },
+    {
+      "quando": [
+        "prisao em flagrante"
+      ],
+      "acrescentar": [
+        "custodia",
+        "conversao",
+        "preventiva"
+      ]
+    },
+    {
+      "quando": [
+        "denuncia espontanea"
+      ],
+      "acrescentar": [
+        "infracao",
+        "tributaria",
+        "pagamento"
+      ]
+    }
+  ],
+  "areas": {
+    "descricao": "Para --area: que camadas do índice cada área pede ao `ref sync`, e que diplomas (pela sigla do índice) entram como alvo da busca. A área do motor ('direito-do-trabalho', 'consumidor') é reduzida à palavra-chave abaixo.",
+    "civil": {
+      "camadas": [],
+      "diplomas": [
+        "cc",
+        "cpc",
+        "lindb"
+      ],
+      "juris": [
+        "superiores",
+        "regionais",
+        "enunciados"
+      ]
+    },
+    "consumidor": {
+      "camadas": [
+        "reg-mj",
+        "reg-ans",
+        "reg-susep",
+        "reg-bcb"
+      ],
+      "diplomas": [
+        "cdc"
+      ],
+      "juris": [
+        "superiores",
+        "regionais",
+        "enunciados"
+      ]
+    },
+    "trabalho": {
+      "camadas": [
+        "reg-mte",
+        "reg-inss"
+      ],
+      "diplomas": [
+        "clt"
+      ],
+      "juris": [
+        "superiores",
+        "regionais"
+      ]
+    },
+    "previdenciario": {
+      "camadas": [
+        "reg-inss",
+        "reg-mte"
+      ],
+      "diplomas": [],
+      "juris": [
+        "superiores",
+        "regionais"
+      ]
+    },
+    "tributario": {
+      "camadas": [
+        "reg-rfb",
+        "reg-pgfn",
+        "reg-confaz",
+        "reg-carf",
+        "reg-stn"
+      ],
+      "diplomas": [
+        "ctn"
+      ],
+      "juris": [
+        "superiores",
+        "administrativos",
+        "regionais"
+      ]
+    },
+    "empresarial": {
+      "camadas": [
+        "reg-cvm",
+        "reg-cade",
+        "reg-bcb",
+        "reg-susep",
+        "reg-inpi"
+      ],
+      "diplomas": [],
+      "juris": [
+        "superiores",
+        "reguladores",
+        "regionais"
+      ]
+    },
+    "administrativo": {
+      "camadas": [
+        "reg-cgu",
+        "reg-agu",
+        "reg-tcu"
+      ],
+      "diplomas": [],
+      "juris": [
+        "superiores",
+        "tcu",
+        "administrativos",
+        "regionais"
+      ]
+    },
+    "ambiental": {
+      "camadas": [
+        "reg-conama",
+        "reg-ibama",
+        "reg-icmbio",
+        "reg-mma"
+      ],
+      "diplomas": [],
+      "juris": [
+        "superiores",
+        "regionais"
+      ]
+    },
+    "digital": {
+      "camadas": [
+        "reg-anatel",
+        "reg-comunicacoes"
+      ],
+      "diplomas": [
+        "lgpd"
+      ],
+      "juris": [
+        "superiores",
+        "regionais"
+      ]
+    },
+    "saude": {
+      "camadas": [
+        "reg-ans",
+        "reg-anvisa",
+        "reg-ms"
+      ],
+      "diplomas": [],
+      "juris": [
+        "superiores",
+        "regionais"
+      ]
+    },
+    "familia": {
+      "camadas": [],
+      "diplomas": [
+        "cc",
+        "eca"
+      ],
+      "juris": [
+        "superiores",
+        "regionais",
+        "enunciados"
+      ]
+    },
+    "sucessoes": {
+      "camadas": [],
+      "diplomas": [
+        "cc",
+        "cpc"
+      ],
+      "juris": [
+        "superiores",
+        "regionais",
+        "enunciados"
+      ]
+    },
+    "imobiliario": {
+      "camadas": [],
+      "diplomas": [
+        "cc"
+      ],
+      "juris": [
+        "superiores",
+        "regionais",
+        "enunciados"
+      ]
+    },
+    "eleitoral": {
+      "camadas": [
+        "reg-cne"
+      ],
+      "diplomas": [],
+      "juris": [
+        "superiores",
+        "eleitoral-militar"
+      ]
+    },
+    "penal": {
+      "camadas": [],
+      "diplomas": [
+        "cp",
+        "cpp"
+      ],
+      "juris": [
+        "superiores",
+        "regionais"
+      ]
+    },
+    "processual": {
+      "camadas": [],
+      "diplomas": [
+        "cpc",
+        "cpp"
+      ],
+      "juris": [
+        "superiores",
+        "regionais",
+        "enunciados"
+      ]
+    },
+    "constitucional": {
+      "camadas": [],
+      "diplomas": [
+        "cf"
+      ],
+      "juris": [
+        "superiores"
+      ]
+    },
+    "transito": {
+      "camadas": [
+        "reg-contran",
+        "reg-senatran"
+      ],
+      "diplomas": [
+        "ctb"
+      ],
+      "juris": [
+        "superiores",
+        "regionais"
+      ]
+    }
+  },
+  "assuntos_descricao": "Assunto digitado → diplomas (pela sigla do apelido no índice) onde ele mora. Serve quando a palavra do advogado só existe no título de seção da lei, nunca no artigo (usucapião, despejo, recuperação judicial). Reforça o ranking; não substitui o texto.",
+  "assuntos": [
+    {
+      "quando": [
+        "usucapiao"
+      ],
+      "diplomas": [
+        "cc",
+        "cpc"
+      ]
+    },
+    {
+      "quando": [
+        "prescricao",
+        "decadencia"
+      ],
+      "diplomas": [
+        "cc",
+        "ctn"
+      ]
+    },
+    {
+      "quando": [
+        "contrato",
+        "obrigacoes",
+        "inadimplemento",
+        "fianca",
+        "compra e venda",
+        "locacao civil",
+        "mandato",
+        "doacao",
+        "comodato"
+      ],
+      "diplomas": [
+        "cc"
+      ]
+    },
+    {
+      "quando": [
+        "posse",
+        "propriedade",
+        "condominio",
+        "hipoteca",
+        "penhor",
+        "servidao",
+        "usufruto"
+      ],
+      "diplomas": [
+        "cc"
+      ]
+    },
+    {
+      "quando": [
+        "casamento",
+        "divorcio",
+        "uniao estavel",
+        "guarda",
+        "alimentos",
+        "poder familiar",
+        "parentesco",
+        "regime de bens"
+      ],
+      "diplomas": [
+        "cc"
+      ]
+    },
+    {
+      "quando": [
+        "heranca",
+        "sucessao",
+        "testamento",
+        "legitima",
+        "herdeiros",
+        "inventario",
+        "partilha"
+      ],
+      "diplomas": [
+        "cc",
+        "cpc"
+      ]
+    },
+    {
+      "quando": [
+        "despejo",
+        "locacao",
+        "inquilino",
+        "aluguel",
+        "renovatoria"
+      ],
+      "diplomas": [
+        "lei do inquilinato"
+      ]
+    },
+    {
+      "quando": [
+        "recuperacao judicial",
+        "falencia",
+        "recuperacao extrajudicial"
+      ],
+      "diplomas": [
+        "lei de falencias",
+        "lrf"
+      ]
+    },
+    {
+      "quando": [
+        "tutela de urgencia",
+        "tutela provisoria",
+        "contestacao",
+        "honorarios sucumbenciais",
+        "cumprimento de sentenca",
+        "agravo de instrumento",
+        "ação rescisoria",
+        "litispendencia",
+        "coisa julgada",
+        "gratuidade da justica"
+      ],
+      "diplomas": [
+        "cpc"
+      ]
+    },
+    {
+      "quando": [
+        "horas extras",
+        "jornada",
+        "ferias",
+        "justa causa",
+        "rescisao",
+        "fgts",
+        "banco de horas",
+        "insalubridade",
+        "periculosidade",
+        "equiparacao salarial",
+        "estabilidade"
+      ],
+      "diplomas": [
+        "clt"
+      ]
+    },
+    {
+      "quando": [
+        "consumidor",
+        "fornecedor",
+        "vicio do produto",
+        "publicidade enganosa",
+        "cadastro de inadimplentes",
+        "clausula abusiva",
+        "inversao do onus da prova"
+      ],
+      "diplomas": [
+        "cdc"
+      ]
+    },
+    {
+      "quando": [
+        "dados pessoais",
+        "protecao de dados",
+        "titular dos dados",
+        "controlador",
+        "encarregado"
+      ],
+      "diplomas": [
+        "lgpd"
+      ]
+    },
+    {
+      "quando": [
+        "lancamento tributario",
+        "credito tributario",
+        "responsabilidade tributaria",
+        "denuncia espontanea",
+        "decadencia tributaria",
+        "imunidade",
+        "isencao",
+        "compensacao tributaria"
+      ],
+      "diplomas": [
+        "ctn"
+      ]
+    },
+    {
+      "quando": [
+        "execucao fiscal",
+        "divida ativa"
+      ],
+      "diplomas": [
+        "lef"
+      ]
+    },
+    {
+      "quando": [
+        "improbidade"
+      ],
+      "diplomas": [
+        "lia"
+      ]
+    },
+    {
+      "quando": [
+        "licitacao",
+        "dispensa de licitacao",
+        "contratacao direta"
+      ],
+      "diplomas": [
+        "lei 14133"
+      ]
+    },
+    {
+      "quando": [
+        "prisao preventiva",
+        "nulidade",
+        "habeas corpus",
+        "revisao criminal",
+        "audiencia de custodia",
+        "flagrante",
+        "tribunal do juri",
+        "denuncia",
+        "queixa"
+      ],
+      "diplomas": [
+        "cpp"
+      ]
+    },
+    {
+      "quando": [
+        "furto",
+        "roubo",
+        "estelionato",
+        "homicidio",
+        "legitima defesa",
+        "dosimetria",
+        "prescricao penal",
+        "pena",
+        "concurso de crimes"
+      ],
+      "diplomas": [
+        "cp"
+      ]
+    },
+    {
+      "quando": [
+        "servidor publico",
+        "regime juridico"
+      ],
+      "diplomas": [
+        "rju"
+      ]
+    },
+    {
+      "quando": [
+        "estatuto da crianca",
+        "adocao",
+        "medida socioeducativa"
+      ],
+      "diplomas": [
+        "eca"
+      ]
+    },
+    {
+      "quando": [
+        "advogado",
+        "honorarios advocaticios",
+        "prerrogativas"
+      ],
+      "diplomas": [
+        "eoab"
+      ]
+    },
+    {
+      "quando": [
+        "transito",
+        "infracao de transito",
+        "habilitacao"
+      ],
+      "diplomas": [
+        "ctb"
+      ]
+    },
+    {
+      "quando": [
+        "mandado de seguranca"
+      ],
+      "diplomas": [
+        "lei 12016"
+      ]
+    },
+    {
+      "quando": [
+        "direitos fundamentais",
+        "competencia",
+        "controle de constitucionalidade",
+        "remedios constitucionais"
+      ],
+      "diplomas": [
+        "cf"
+      ]
+    },
+    {
+      "quando": [
+        "responsabilidade civil",
+        "ato ilicito",
+        "abuso de direito",
+        "dano moral",
+        "danos morais",
+        "indenizacao",
+        "clausula penal",
+        "atividade de risco",
+        "responsabilidade objetiva",
+        "responsabilidade subjetiva",
+        "prescricao"
+      ],
+      "diplomas": [
+        "cc"
+      ]
+    },
+    {
+      "quando": [
+        "pessoa juridica",
+        "desconsideracao da personalidade",
+        "sociedade limitada",
+        "sociedade simples",
+        "capital social"
+      ],
+      "diplomas": [
+        "cc"
+      ]
+    },
+    {
+      "quando": [
+        "aposentadoria",
+        "pensao por morte",
+        "auxilio por incapacidade",
+        "auxilio doenca",
+        "auxilio acidente",
+        "salario maternidade",
+        "carencia",
+        "qualidade de segurado",
+        "beneficio previdenciario"
+      ],
+      "diplomas": [
+        "lei 8213"
+      ]
+    },
+    {
+      "quando": [
+        "beneficio assistencial",
+        "loas"
+      ],
+      "diplomas": [
+        "lei 8742"
+      ]
+    },
+    {
+      "quando": [
+        "recuperacao judicial",
+        "falencia"
+      ],
+      "diplomas": [
+        "lei 11101"
+      ]
+    },
+    {
+      "quando": [
+        "sociedade anonima",
+        "acionista",
+        "companhia"
+      ],
+      "diplomas": [
+        "lsa"
+      ]
+    },
+    {
+      "quando": [
+        "marca",
+        "patente",
+        "propriedade industrial",
+        "desenho industrial"
+      ],
+      "diplomas": [
+        "lpi"
+      ]
+    },
+    {
+      "quando": [
+        "improbidade administrativa"
+      ],
+      "diplomas": [
+        "lia"
+      ]
+    },
+    {
+      "quando": [
+        "crimes ambientais",
+        "pesca",
+        "fauna"
+      ],
+      "diplomas": [
+        "lei de crimes ambientais"
+      ]
+    },
+    {
+      "quando": [
+        "dano ambiental",
+        "poluidor",
+        "politica nacional do meio ambiente"
+      ],
+      "diplomas": [
+        "lei 6938"
+      ]
+    },
+    {
+      "quando": [
+        "violencia domestica",
+        "medida protetiva",
+        "maria da penha"
+      ],
+      "diplomas": [
+        "lei 11340"
+      ]
+    },
+    {
+      "quando": [
+        "trafico de drogas",
+        "uso de drogas",
+        "entorpecentes"
+      ],
+      "diplomas": [
+        "lei 11343"
+      ]
+    },
+    {
+      "quando": [
+        "lavagem de dinheiro"
+      ],
+      "diplomas": [
+        "lei 9613"
+      ]
+    },
+    {
+      "quando": [
+        "organizacao criminosa",
+        "colaboracao premiada"
+      ],
+      "diplomas": [
+        "lei 12850"
+      ]
+    },
+    {
+      "quando": [
+        "captacao ilicita de sufragio",
+        "propaganda eleitoral",
+        "prestacao de contas de campanha",
+        "registro de candidatura",
+        "pesquisa eleitoral"
+      ],
+      "diplomas": [
+        "lei 9504"
+      ]
+    },
+    {
+      "quando": [
+        "inelegibilidade",
+        "investigacao judicial eleitoral",
+        "abuso de poder"
+      ],
+      "diplomas": [
+        "lei das inelegibilidades"
+      ]
+    },
+    {
+      "quando": [
+        "medicamento",
+        "vigilancia sanitaria",
+        "anvisa",
+        "registro de medicamentos"
+      ],
+      "diplomas": [
+        "lei 6360"
+      ]
+    },
+    {
+      "quando": [
+        "plano de saude",
+        "operadora de plano"
+      ],
+      "diplomas": [
+        "lei 9656"
+      ]
+    },
+    {
+      "quando": [
+        "sistema unico de saude",
+        "sus"
+      ],
+      "diplomas": [
+        "lei 8080"
+      ]
+    },
+    {
+      "quando": [
+        "imposto sobre servicos",
+        "iss"
+      ],
+      "diplomas": [
+        "lc 116"
+      ]
+    },
+    {
+      "quando": [
+        "terceirizacao",
+        "trabalho temporario"
+      ],
+      "diplomas": [
+        "lei 6019"
+      ]
+    },
+    {
+      "quando": [
+        "fgts"
+      ],
+      "diplomas": [
+        "lei 8036"
+      ]
+    },
+    {
+      "quando": [
+        "marco civil",
+        "provedor de aplicacao",
+        "remocao de conteudo"
+      ],
+      "diplomas": [
+        "marco civil da internet"
+      ]
+    },
+    {
+      "quando": [
+        "acesso a informacao",
+        "transparencia"
+      ],
+      "diplomas": [
+        "lai"
+      ]
+    },
+    {
+      "quando": [
+        "registros publicos",
+        "registro de imoveis"
+      ],
+      "diplomas": [
+        "lrp"
+      ]
+    },
+    {
+      "quando": [
+        "alienacao fiduciaria"
+      ],
+      "diplomas": [
+        "lei 9514",
+        "dl 911"
+      ]
+    },
+    {
+      "quando": [
+        "incorporacao imobiliaria",
+        "distrato"
+      ],
+      "diplomas": [
+        "lei 4591"
+      ]
+    },
+    {
+      "quando": [
+        "execucao penal",
+        "progressao de regime",
+        "remicao"
+      ],
+      "diplomas": [
+        "lep"
+      ]
+    },
+    {
+      "quando": [
+        "crimes hediondos"
+      ],
+      "diplomas": [
+        "lei 8072"
+      ]
+    },
+    {
+      "quando": [
+        "juizados especiais",
+        "transacao penal"
+      ],
+      "diplomas": [
+        "lei 9099"
+      ]
+    },
+    {
+      "quando": [
+        "armas",
+        "porte de arma"
+      ],
+      "diplomas": [
+        "lei 10826"
+      ]
+    },
+    {
+      "quando": [
+        "arbitragem"
+      ],
+      "diplomas": [
+        "lei 9307"
+      ]
+    },
+    {
+      "quando": [
+        "ação civil publica",
+        "acao civil publica"
+      ],
+      "diplomas": [
+        "lacp"
+      ]
+    },
+    {
+      "quando": [
+        "acao popular"
+      ],
+      "diplomas": [
+        "lei 4717"
+      ]
+    },
+    {
+      "quando": [
+        "anticorrupcao"
+      ],
+      "diplomas": [
+        "lei 12846"
+      ]
+    },
+    {
+      "quando": [
+        "concessao",
+        "permissao de servicos"
+      ],
+      "diplomas": [
+        "lei 8987"
+      ]
+    }
+  ]
+}

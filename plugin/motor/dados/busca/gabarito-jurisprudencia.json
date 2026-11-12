@@ -1,0 +1,257 @@
+{
+  "descricao": "Gabarito da busca de jurisprudência (ref jurisprudencia), montado em 11/11/2026 com consultas dos runs reais (ofício do MP, memoriais, criminal) e documentos conferidos no índice nacional 2026.11.25. `espera`: qualquer um dos ids no top 5 (no top 1 quando `top: 1`). `ausente`: o julgado não está no índice; a busca passa quando não devolve outro documento no lugar dele e avisa que ele não está lá. Três casos tiveram a lista ampliada depois da primeira medição (campo `ampliado_em`), com o caso-líder do tema ou a outra publicação do mesmo precedente; a medição estrita é a mesma sem eles.",
+  "casos": [
+    {
+      "grupo": "numero",
+      "q": "REsp 2.114.283",
+      "espera": [
+        "stj:at:bbe9a1bb0c53"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "REsp 1.340.604",
+      "espera": [
+        "stj:at:a25f8db7450c"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "REsp 1.689.074-RS",
+      "espera": [
+        "stj:at:a4866f82e5fe"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "REsp 1.704.002/SP",
+      "espera": [
+        "stj:at:fa8803bd45d6"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "HC 663.710",
+      "espera": [
+        "stj:inf:stj-51d20a6b4947"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "HC 829.723/PR",
+      "espera": [
+        "stj:inf:stj-1cf233a15d5c"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "REsp 1.629.423",
+      "espera": [
+        "stj:at:0dafd9865264"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "Súmula 601/STJ",
+      "espera": [
+        "stj:sumula:601"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "Súmula 7 do STJ",
+      "espera": [
+        "stj:sumula:7"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "Súmula 437 do TST",
+      "espera": [
+        "tst:sumula:437"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "Tema 1.076 do STJ",
+      "espera": [
+        "stj:rep:1076"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "Tema 1258 STJ",
+      "espera": [
+        "stj:rep:1258"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "numero",
+      "q": "Tema 1.046 do STF",
+      "espera": [
+        "stf:rg:1046"
+      ],
+      "top": 1
+    },
+    {
+      "grupo": "ausente",
+      "q": "REsp 1.978.268/SP",
+      "ausente": true
+    },
+    {
+      "grupo": "ausente",
+      "q": "EAREsp 676.608/RS",
+      "ausente": true
+    },
+    {
+      "grupo": "ausente",
+      "q": "REsp 9.999.999",
+      "ausente": true
+    },
+    {
+      "grupo": "tema",
+      "q": "direito de arrependimento",
+      "area": "direito-do-consumidor",
+      "espera": [
+        "stj:at:bbe9a1bb0c53"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "direito de arrependimento curso online",
+      "area": "direito-do-consumidor",
+      "espera": [
+        "stj:at:bbe9a1bb0c53"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "legitimidade do Ministério Público direitos individuais homogêneos consumidor",
+      "area": "direito-do-consumidor",
+      "espera": [
+        "stj:sumula:601"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "inscrição indevida cadastro de inadimplentes dano moral",
+      "area": "direito-do-consumidor",
+      "espera": [
+        "stj:rep:922",
+        "stj:sumula:385",
+        "stj:at:fa8803bd45d6",
+        "stj:at:af5974c8dd5d",
+        "stj:at:c289800d394d"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "dano moral anotação preexistente legítima cadastro",
+      "area": "direito-do-consumidor",
+      "espera": [
+        "stj:sumula:385"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "inversão do ônus da prova consumidor",
+      "area": "direito-do-consumidor",
+      "espera": [
+        "stj:informativo:383.83172b38",
+        "stj:informativo:161.a2920b9a",
+        "stj:informativo:226.d7531999",
+        "stj:at:742e0555608a"
+      ],
+      "ampliado_em": "2026-11-11: a primeira lista era estreita; os ids acrescentados são o mesmo precedente (o informativo e o item) ou o caso-líder do tema"
+    },
+    {
+      "grupo": "tema",
+      "q": "litigância predatória emenda da inicial",
+      "espera": [
+        "stj:rep:1198"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "honorários advocatícios por equidade valor da causa elevado",
+      "area": "processo-civil",
+      "espera": [
+        "stj:rep:1076",
+        "stj:at:956ed179428c",
+        "stj:informativo-edicao-extraordinaria:6e.496224c5"
+      ],
+      "ampliado_em": "2026-11-11: a primeira lista era estreita; os ids acrescentados são o mesmo precedente (o informativo e o item) ou o caso-líder do tema"
+    },
+    {
+      "grupo": "tema",
+      "q": "reconhecimento fotográfico art. 226 CPP",
+      "area": "criminal",
+      "espera": [
+        "stj:rep:1258",
+        "stf:rg:1380",
+        "stj:inf:stj-1cf233a15d5c",
+        "stj:inf:stj-51d20a6b4947",
+        "stj:at:680650ab5eb9",
+        "stj:inf:stj-394bf5870ca0",
+        "stj:at:cdb017939944",
+        "stj:inf:stj-83e464abace0"
+      ],
+      "ampliado_em": "2026-11-11: a primeira lista era estreita; os ids acrescentados são o mesmo precedente (o informativo e o item) ou o caso-líder do tema"
+    },
+    {
+      "grupo": "tema",
+      "q": "reconhecimento de pessoas inobservância do procedimento",
+      "area": "criminal",
+      "espera": [
+        "stj:rep:1258",
+        "stf:rg:1380",
+        "stj:inf:stj-51d20a6b4947",
+        "stj:inf:stj-1cf233a15d5c"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "prisão civil do alimentante três prestações anteriores",
+      "area": "familia",
+      "espera": [
+        "stj:sumula:309"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "alimentos gravídicos",
+      "area": "familia",
+      "espera": [
+        "stj:at:0dafd9865264"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "intervalo intrajornada concessão parcial",
+      "area": "direito-do-trabalho",
+      "espera": [
+        "tst:sumula:437"
+      ]
+    },
+    {
+      "grupo": "tema",
+      "q": "norma coletiva que limita direito trabalhista",
+      "area": "direito-do-trabalho",
+      "espera": [
+        "stf:rg:1046"
+      ]
+    }
+  ]
+}
