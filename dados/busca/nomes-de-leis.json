@@ -1,0 +1,23 @@
+{
+  "descricao": "Nomes pelos quais a prática cita leis federais cujo apelido o índice ainda não traz. Cada entrada leva o nome (sem acento, minúsculo) à forma 'Lei nº N/ano' que o leitor do servidor entende. É dado do motor; quando o servidor passar a gravar o apelido, a entrada deixa de ser usada (o índice vence).",
+  "nomes": [
+    ["loas", "Lei 8.742/1993"],
+    ["lei orgânica da assistência social", "Lei 8.742/1993"],
+    ["lei kandir", "Lei Complementar 87/1996"],
+    ["lei de recuperação judicial e falência", "Lei 11.101/2005"],
+    ["lei de recuperacao judicial e falencia", "Lei 11.101/2005"],
+    ["lei do registro público de empresas", "Lei 8.934/1994"],
+    ["lei de improbidade administrativa", "Lei 8.429/1992"],
+    ["lei da política nacional do meio ambiente", "Lei 6.938/1981"],
+    ["lei do snuc", "Lei 9.985/2000"],
+    ["lei dos planos de saúde", "Lei 9.656/1998"],
+    ["lei orgânica da saúde", "Lei 8.080/1990"],
+    ["lei de alimentos gravídicos", "Lei 11.804/2008"],
+    ["lei de alimentos", "Lei 5.478/1968"],
+    ["lei do divórcio", "Lei 6.515/1977"],
+    ["lei de locações", "Lei 8.245/1991"],
+    ["lei do parcelamento do solo urbano", "Lei 6.766/1979"],
+    ["lei das eleições", "Lei 9.504/1997"],
+    ["lei dos partidos políticos", "Lei 9.096/1995"]
+  ]
+}

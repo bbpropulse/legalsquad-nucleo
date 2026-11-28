@@ -1,0 +1,7 @@
+node_modules/
+_legalsquad/_memory/
+_legalsquad/_browser_profile/
+_legalsquad/logs/
+acervo/casos/
+squads/*/_memory/
+.env
